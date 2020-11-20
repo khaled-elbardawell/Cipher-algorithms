@@ -35,11 +35,12 @@ public class IS extends helper {
                          + " 7- Set alphabetic (String like => abcd...z/*-+ ) \n"
                          + " 8- Inverse matrix modulo  \n"
                          + " 9- multi matrix \n"
-                         + " 10- Det \n"
+                         + " 10- Determinant \n"
                          + " 11- Exit \n"
+                         +"\n NOTE:  alphabetical set =>[ "+alphabetic+" ] (MOD "+alphabetic.length()+") If you want to modify it, click to Option No. 7 \n"
                      );
             
-        System.out.print("Enter num option : ");
+        System.out.print("\n Enter num option : ");
         int numOptionFromList =  in.nextInt();
 
         switch(numOptionFromList){
@@ -98,6 +99,7 @@ public class IS extends helper {
             System.out.print("Enter alphabetic (String like => abcd...z/*-+ ) : ");
             Scanner  alphaIn =new Scanner(System.in);
             alphabetic =  alphaIn.nextLine();
+            alphabeticArray  =  getAlphabeticToarray(alphabetic);
             System.out.println("\n Operation accomplished successfully !! ");
         }
         

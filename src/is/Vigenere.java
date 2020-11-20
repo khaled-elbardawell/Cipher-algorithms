@@ -28,7 +28,7 @@ public class Vigenere extends helper {
                          System.out.print("Enter plaintxt  : ");
                          Scanner s = new Scanner(System.in);
                          String p =  s.nextLine().toLowerCase();
-                         System.out.print("Enter key (int) : ");
+                         System.out.print("Enter key : ");
                          String k =  s.nextLine().toLowerCase();
                          System.out.print("Enter mod (int) : ");
                          int mod =  in.nextInt();
@@ -81,7 +81,7 @@ public class Vigenere extends helper {
                    countKey++;
               }
               
-              
+                 
               for(int i = 0 ; i < plain.length ; i++){
                    for(int j = 0 ; j < alphabeticArray.length ; j++ ){
                         if(alphabeticArray[j] == keyArray[i] ){ 

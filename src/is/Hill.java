@@ -4,7 +4,7 @@ package is;
 import java.util.Scanner;
 
 public class Hill extends helper {
-    
+    int keyNumArray;
      public static void main(String[] args) { 
               Hill();
      }
@@ -29,17 +29,46 @@ public class Hill extends helper {
                         System.out.print("Enter plaintext : ");
                         Scanner  plainIn = new Scanner(System.in);
                         String plaintext =  plainIn.nextLine().toLowerCase();
-
-                        System.out.print("Enter key : ");
-                        Scanner  keyIn = new Scanner(System.in);
-                        String key =  keyIn.nextLine().toLowerCase();
-
-                        System.out.print("Enter mod : ");
-                        int mod =  in.nextInt();
+                        
                         System.out.print("Enter m (length matrix) : ");
                         int m =  in.nextInt();
                         
-                        String res = encriptionHill(plaintext,key, mod ,m);
+                        System.out.print("Enter mod : ");
+                        int mod =  in.nextInt();
+                        
+                        System.out.println("Is the key a matrix ? (yes or no) ");
+                        Scanner  qus = new Scanner(System.in);
+                        String ans =  qus.nextLine().toLowerCase();
+                        
+                        String res = null;
+                        if(ans.equals("yes")){
+                            System.out.println("Enter key matrix : ");
+                             // set matrix in array  
+                            int [][] matrix = new int[m][m];
+
+                             for(int row = 0 ; row < m ; row++ ){
+                                 System.out.println("***************** Row "+ row+" *************************");
+                                 for(int col = 0 ; col < m ; col++){
+                                     System.out.print("Enter value (int) row "+row+ " col "+col+" : ");
+                                     Scanner sc = new Scanner(System.in);
+                                     matrix[row][col] =  sc.nextInt();
+                                 }
+                             }
+                             
+                             res = encriptionHillWhenKeyIsMatrix( plaintext,matrix, mod,m);
+                             
+                        }else{
+                            System.out.print("Enter key (Text) : ");
+                            Scanner  keyIn = new Scanner(System.in);
+                            String key =  keyIn.nextLine().toLowerCase();
+                             res = encriptionHill(plaintext,key, mod ,m);
+                        }
+                        
+
+                       
+                       
+                        
+                       
                         if(res != null){
                              System.out.println("\n************ Result ***********");
                              System.out.println("Ciphertext => " + res.toUpperCase());    
@@ -126,6 +155,48 @@ public class Hill extends helper {
               
              int plainNumArray[][] = searchInAlphaArray(p,m,"text");
              int keyNumArray  [][] = searchInAlphaArray(k,m,"key");
+            
+             if(! checkIfMatrixInverted(keyNumArray,m,mod)){
+                 System.out.println("This matrix have not inverse !! ");
+                 return null;
+              } 
+
+             
+             String cipherText = "";
+             String alpa[] = alphabetic.split("");
+         
+             for(int colP = 0 ; colP < plainNumArray[0].length ; colP++  ){
+                 int r[][] = new int[plainNumArray.length][1];
+                   for(int rowP = 0 ; rowP < plainNumArray.length ; rowP++ ){
+                     r[rowP][0] = plainNumArray[rowP][colP];
+                    }
+                
+                      int resMulti2D[][] =  multiMatrix(keyNumArray,r);
+                 
+                  for(int i = 0 ; i < resMulti2D.length ; i++){
+                    cipherText += alpa[(int) (resMulti2D[i][0] % mod) ];
+                  }
+                       
+             }
+             
+              return cipherText;  
+          }
+          
+          
+          
+           public static String encriptionHillWhenKeyIsMatrix(String p, int k[][],int mod,int m)
+          { 
+              int plainMod = p.length() % m;
+              
+              if(plainMod != 0){
+                  plainMod = m - plainMod;
+                  for(int i = 0 ; i < plainMod ; i++){
+                      p += "x" ;
+                  }
+              }
+              
+             int plainNumArray[][] = searchInAlphaArray(p,m,"text");
+             int keyNumArray  [][] = k;
             
              if(! checkIfMatrixInverted(keyNumArray,m,mod)){
                  System.out.println("This matrix have not inverse !! ");

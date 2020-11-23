@@ -27,16 +27,17 @@ public class IS extends helper {
         private static void List()
         {
             System.out.print("\n 1- GCD \n" 
-                         + " 2- Inverse \n"
+                         + " 2- Inverse number over modulo \n"
                          + " 3- Caesar \n"
                          + " 4- Vigenere \n"
                          + " 5- One-Time-Pad (Vername) \n"
                          + " 6- Hill \n"
                          + " 7- Set alphabetic (String like => abcd...z/*-+ ) \n"
-                         + " 8- Inverse matrix modulo  \n"
+                         + " 8- Inverse matrix over modulo  \n"
                          + " 9- multi matrix \n"
-                         + " 10- Determinant \n"
-                         + " 11- Exit \n"
+                         + " 10-Determinant \n"
+                         + " 11-Brute force \n"
+                         + " 12- Exit \n"
                          +"\n NOTE:  alphabetical set =>[ "+alphabetic+" ] (MOD "+alphabetic.length()+") If you want to modify it, click to Option No. 7 \n"
                      );
             
@@ -84,8 +85,15 @@ public class IS extends helper {
             case 10 : 
                  determinantMatrixModList();
                  break;
-              
-            case 11 : 
+             
+            case 11 :
+                        System.out.print("Enter plaintxt  : ");
+                         Scanner s = new Scanner(System.in);
+                         String p =  s.nextLine();
+                         p = p.toLowerCase();
+                         burtForce(p);
+                break;
+            case 12 : 
                   System.exit(0); 
                  break;    
             
@@ -135,7 +143,12 @@ public class IS extends helper {
         
         
         
-        
+        private static void burtForce(String p){
+            
+            for(int i=0;i<26;i++){
+                System.out.println("Key = " + i + " plaintext =  => " + Caesar.decriptionCaesar(p,i,26));
+            }
+        } 
         
         
         

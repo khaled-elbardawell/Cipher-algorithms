@@ -35,7 +35,7 @@ public class IS extends helper {
                          + " 7- Set alphabetic (String like => abcd...z/*-+ ) \n"
                          + " 8- Inverse matrix over modulo  \n"
                          + " 9- multi matrix \n"
-                         + " 10-Determinant \n"
+                         + " 10-Determinant over modulo \n"
                          + " 11-Brute force \n"
                          + " 12- Exit \n"
                          +"\n NOTE:  alphabetical set =>[ "+alphabetic+" ] (MOD "+alphabetic.length()+") If you want to modify it, click to Option No. 7 \n"
@@ -87,11 +87,7 @@ public class IS extends helper {
                  break;
              
             case 11 :
-                        System.out.print("Enter plaintxt  : ");
-                         Scanner s = new Scanner(System.in);
-                         String p =  s.nextLine();
-                         p = p.toLowerCase();
-                         burtForce(p);
+                          burtForce();
                 break;
             case 12 : 
                   System.exit(0); 
@@ -102,6 +98,10 @@ public class IS extends helper {
         } //end list function
 
         
+        
+        
+        
+                
         private static void setAlphabeticList()
         {
             System.out.print("Enter alphabetic (String like => abcd...z/*-+ ) : ");
@@ -143,7 +143,11 @@ public class IS extends helper {
         
         
         
-        private static void burtForce(String p){
+        private static void burtForce(){
+              System.out.print("Enter plaintxt  : ");
+               Scanner s = new Scanner(System.in);
+               String p =  s.nextLine();
+               p = p.toLowerCase();
             
             for(int i=0;i<26;i++){
                 System.out.println("Key = " + i + " plaintext =  => " + Caesar.decriptionCaesar(p,i,26));

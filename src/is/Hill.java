@@ -82,17 +82,48 @@ public class Hill extends helper {
                         Scanner  cipherIn = new Scanner(System.in);
                         String ciphertext =  cipherIn.nextLine().toLowerCase();
 
-                        System.out.print("Enter key : ");
-                        Scanner  KEYIn = new Scanner(System.in);
-                        String KEY =  KEYIn.nextLine().toLowerCase();
+                         System.out.print("Enter m (length matrix) : ");
+                         int M =  in.nextInt();
+                        
+                         
+                          System.out.print("Enter mod : ");
+                          int MOD =  in.nextInt();
+                        
+                       
 
-                        System.out.print("Enter mod : ");
-                        int MOD =  in.nextInt();
-                        System.out.print("Enter m (length matrix) : ");
-                        int M =  in.nextInt();
                         
+                        System.out.println("Is the key a matrix ? (yes or no) ");
+                        Scanner  Qus = new Scanner(System.in);
+                        String Ans =  Qus.nextLine().toLowerCase();
                         
-                        String Res = decriptionHill(ciphertext,KEY, MOD ,M);
+                        String Res = null;
+                        if(Ans.equals("yes")){
+                            System.out.println("Enter key matrix : ");
+                             // set matrix in array  
+                            int [][] matrix = new int[M][M];
+
+                             for(int row = 0 ; row < M ; row++ ){
+                                 System.out.println("***************** Row "+ row+" *************************");
+                                 for(int col = 0 ; col < M ; col++){
+                                     System.out.print("Enter value (int) row "+row+ " col "+col+" : ");
+                                     Scanner sc = new Scanner(System.in);
+                                     matrix[row][col] =  sc.nextInt();
+                                 }
+                             }
+                             
+                             Res = decriptionHillWhenKeyIsMatrix( ciphertext,matrix, MOD,M);
+                             
+                        }else{
+                            System.out.print("Enter key (Text) : ");
+                            Scanner  keyIn = new Scanner(System.in);
+                            String key =  keyIn.nextLine().toLowerCase();
+                             Res = encriptionHill(ciphertext,key, MOD ,M);
+                        }
+                        
+
+                       
+                       
+                        
                         if(Res != null){
                              System.out.println("\n************ Result ***********");
                              System.out.println("Plaintext => " + Res.toUpperCase());    
@@ -267,7 +298,45 @@ public class Hill extends helper {
           }
           
            
-            
+             public static String decriptionHillWhenKeyIsMatrix(String c, int k[][],int mod,int m){
+
+                 int cipherMod = c.length() % m;
+              
+              if(cipherMod != 0){
+                  cipherMod = m - cipherMod;
+                  for(int i = 0 ; i < cipherMod ; i++){
+                      c += "x" ;
+                  }
+              }
+              
+              
+             int cipherNumArray[][] = searchInAlphaArray(c,m,"text");
+             int keyNumArray  [][] = k;
+             
+             keyNumArray = inversesMatrixMod(keyNumArray,m ,mod);
+             
+             String plainText = "";
+             String alpa[] = alphabetic.split("");
+         
+             for(int colP = 0 ; colP < cipherNumArray[0].length ; colP++  ){
+                 int r[][] = new int[cipherNumArray.length][1];
+                   for(int rowP = 0 ; rowP < cipherNumArray.length ; rowP++ ){
+                     r[rowP][0] = cipherNumArray[rowP][colP];
+                    }
+                
+                      int resMulti2D[][] =  multiMatrix(keyNumArray,r);
+                 
+                  for(int i = 0 ; i < resMulti2D.length ; i++){
+                    plainText += alpa[(int) (resMulti2D[i][0] % mod) ];
+                  }
+                         
+             }
+             
+              return plainText;  
+            }
+                    
+                    
+                    
         private static int[][] searchInAlphaArray(String s,int m,String flag)
         {
               String alpha[] = alphabetic.split("");

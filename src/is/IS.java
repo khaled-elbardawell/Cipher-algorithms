@@ -201,9 +201,17 @@ public class IS extends helper {
                  int bInverse =  in.nextInt();
                  int rInverse =  inverses(mInverse,bInverse);
                  
-                  System.out.println("\n************ Result ***********");
-                  System.out.println("inverse  => ( " + bInverse +" ) => "+ rInverse);   
-                  System.out.println("*******************************");
+                 if(rInverse == -1){
+                      System.out.println("\n************ Result ***********");
+                      System.out.println("It has no inverse !! ");   
+                      System.out.println("*******************************");
+                 }else{
+                      System.out.println("\n************ Result ***********");
+                      System.out.println("inverse  => ( " + bInverse +" ) => "+ rInverse);   
+                      System.out.println("*******************************");
+                 }
+                 
+                 
         }
         
         

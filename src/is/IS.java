@@ -1,23 +1,19 @@
 
 package is;
 
-import java.lang.reflect.Array;
 import java.util.Scanner;
-
 
 public class IS extends helper {
 
-     
     public static void main(String[] args) {
-        
         in =new Scanner(System.in);
         while(true){
-            try{
+//            try{
               List();    
-            }catch(Exception e){
-                System.out.println("Error try again !!");
-                System.exit(0);
-            } 
+//            }catch(Exception e){
+//                System.out.println("Error try again !!");
+//                System.exit(0);
+//            } 
         }
       
         
@@ -37,7 +33,8 @@ public class IS extends helper {
                          + " 9- multi matrix \n"
                          + " 10-Determinant over modulo \n"
                          + " 11-Brute force \n"
-                         + " 12- Exit \n"
+                         + " 12- DES \n"
+                         + " 13- Exit \n"
                          +"\n NOTE:  alphabetical set =>[ "+alphabetic+" ] (MOD "+alphabetic.length()+") If you want to modify it, click to Option No. 7 \n"
                      );
             
@@ -72,10 +69,9 @@ public class IS extends helper {
             case 7 : 
                   setAlphabeticList();
                  break;
-                 
-
+                
             case 8 : 
-                inverseMatrixList();
+                  inverseMatrixList();
                   break;    
                  
             case 9 : 
@@ -87,19 +83,18 @@ public class IS extends helper {
                  break;
              
             case 11 :
-                          burtForce();
+                  burtForce();
                 break;
             case 12 : 
-                  System.exit(0); 
+                 Des.main(null);
                  break;    
-            
+            case 13 : 
+                  System.exit(0); 
+                 break; 
             } //end switch
         
         } //end list function
 
-        
-        
-        
         
                 
         private static void setAlphabeticList()

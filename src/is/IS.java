@@ -34,7 +34,8 @@ public class IS extends helper {
                          + " 10-Determinant over modulo \n"
                          + " 11-Brute force \n"
                          + " 12- DES \n"
-                         + " 13- Exit \n"
+                         + " 13- RSA \n"
+                         + " 14- Exit \n"
                          +"\n NOTE:  alphabetical set =>[ "+alphabetic+" ] (MOD "+alphabetic.length()+") If you want to modify it, click to Option No. 7 \n"
                      );
             
@@ -87,8 +88,11 @@ public class IS extends helper {
                 break;
             case 12 : 
                  Des.main(null);
-                 break;    
-            case 13 : 
+                 break;  
+            case 13 :
+                RSA.main(null);
+                break;
+            case 14 : 
                   System.exit(0); 
                  break; 
             } //end switch

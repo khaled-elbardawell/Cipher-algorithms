@@ -209,6 +209,7 @@ public class RSA extends helper {
           int  d  = inverses(euler,e); 
          for(int i = 0 ; i < cipherTextIntArray.length ; i++ ){ // loop eche char in plain text              
                int c = (int) Math.pow(cipherTextIntArray[i] , d) % n;
+               c = checkIndex(c);
                plainText += String.valueOf(alphabeticArray[c]);
          }
          

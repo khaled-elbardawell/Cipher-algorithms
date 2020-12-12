@@ -159,6 +159,7 @@ public class RSA extends helper {
          
          for(int i = 0 ; i < plainTextIntArray.length ; i++ ){ // loop eche char in plain text              
                int c = (int) Math.pow(plainTextIntArray[i] , e) % n;
+               c = checkIndex(c);
                cipherText += String.valueOf(alphabeticArray[c]);
          }
          
@@ -166,6 +167,16 @@ public class RSA extends helper {
          return cipherText;
     }    
     
+    public static int checkIndex(int n){
+            while(n > alphabeticArray.length){
+               n = n % alphabeticArray.length;
+            }
+            
+            while(n < 0){
+               n = n + alphabeticArray.length;
+            }
+            return n;
+   }
     
     public static String decriptionRSA(String ciphertext,int p,int q,int e)
     {

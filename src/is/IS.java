@@ -8,12 +8,12 @@ public class IS extends helper {
     public static void main(String[] args) {
         in =new Scanner(System.in);
         while(true){
-//            try{
+            try{
               List();    
-//            }catch(Exception e){
-//                System.out.println("Error try again !!");
-//                System.exit(0);
-//            } 
+            }catch(Exception e){
+                System.out.println("Error try again !!");
+                System.exit(0);
+            } 
         }
       
         
